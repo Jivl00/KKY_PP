@@ -1,0 +1,270 @@
+body {
+    position: absolute;
+    margin: 0;
+    font-family: Montserrat, Roboto, sans-serif;
+    background-color: #eef1f0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+
+#header {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    background: linear-gradient(-30deg, #00C8B4, #0074C5);
+    box-shadow: 0px 2px 8px rgba(0, 200, 180, 0.8);
+    height: 60px;
+    z-index: 1000;
+}
+
+#header-title {
+    align-self: center;
+    text-align: left;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+#logo {
+    background-image: url("site-logo.png");
+    width: 120px;
+    height: 60px;
+    background-size: 60px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#logo:hover,
+#logo.open,
+#logo.open-initial {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    padding-top: 60px;
+}
+
+main {
+    flex: 2;
+    background-color: #eef1f0;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+aside {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    background-color: #CAD8D4;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#svgcanvas {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 200, 180, 0.8);
+    margin: 20px;
+    margin-bottom: 0;
+}
+
+.output {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 200, 180, 0.8);
+    margin: 10px;
+    padding: 10px;
+}
+
+.output-unit {
+    margin-left: auto;
+}
+
+h1 {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+button {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 200, 180, 0.8);
+    padding: 10px;
+    margin: 10px;
+    font-size: 21px;
+    font-weight: bold;
+    color: #00C8B4;
+    cursor: pointer;
+    margin: 20px;
+}
+
+button:hover {
+    background-color: #00C8B4;
+    color: #ffffff;
+}
+
+#controls {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: calc(100%/3);
+}
+
+.err {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    background-color: #eef1f0;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 200, 180, 0.8);
+    margin: 10px;
+    padding: 5px;
+}
+
+.inputbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+input {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 200, 180, 0.8);
+    font-size: 20px;
+    color: #00C8B4;
+    margin: 10px;
+    text-align: center;
+}
+
+.toggle {
+    visibility: hidden;
+}
+
+.toggle+label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 120px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0px 2px 8px rgba(0, 200, 180, 0.8);
+    overflow: hidden;
+}
+
+.toggle+label:before,
+.toggle+label:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding: 15px;
+    transition: All 0.5s ease;
+}
+
+input.toggle-round-yes-no+label {
+    text-align: center;
+    height: 45px;
+}
+
+input.toggle-round-yes-no+label:before,
+input.toggle-round-yes-no+label:after {
+    width: 100%;
+    height: 100%;
+    padding-top: 10%;
+    padding-left: 0;
+}
+
+input.toggle-round-yes-no+label:before {
+    content: "Off";
+    color: #00C8B4;
+    backface-visibility: hidden;
+    background-color: #fff;
+    text-indent: inherit;
+}
+
+input.toggle-round-yes-no+label:after {
+    content: "On";
+    color: #FFF;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    background-color: #00C8B4;
+    text-indent: inherit;
+}
+
+input.toggle-round-yes-no:checked+label:before {
+    transform: rotateY(180deg);
+}
+
+input.toggle-round-yes-no:checked+label:after {
+    transform: rotateY(0);
+    margin-left: 0;
+}
+
+.model {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.model_reset {
+    margin-top: 15px;
+}
+
+.status {
+    background-color: #eef1f0;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 200, 180, 0.8);
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+#myPlot {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 200, 180, 0.8);
+    margin: 20px;
+    margin-bottom: 0;
+}
+
+footer {
+    text-align: center;
+    background: linear-gradient(-30deg, #00C8B4, #0074C5);
+    box-shadow: 0px -2px 8px rgba(0, 200, 180, 0.8);
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    #header-title {
+        font-size: 20px;
+    }
+
+    #row {
+        flex-direction: column;
+        padding-top: 60px;
+    }
+
+    input {
+        width: 100%;
+    }
+}

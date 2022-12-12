@@ -1,0 +1,124 @@
+Model {
+  Name                    "qcm_exec"
+  Version                 3.00
+  #RexVersion             "2.50.99 rev. 13907, Date 2022-02-25"
+  ShowPortLabels          on
+  SavedCharacterEncoding  "UTF-8"
+  MaskType                "REX sequence"
+  MaskIconFrame           on
+  MaskIconOpaque          on
+  MaskIconRotate          "none"
+  MaskIconUnits           "autoscale"
+  BlockDefaults {
+    ForegroundColor         "black"
+    BackgroundColor         "white"
+    DropShadow              off
+    NamePlacement           "normal"
+    FontName                "Arial"
+    FontSize                10
+    FontWeight              "normal"
+    FontAngle               "normal"
+    ShowName                on
+    Orientation             "right"
+  }
+  AnnotationDefaults {
+    HorizontalAlignment     "center"
+    VerticalAlignment       "middle"
+    ForegroundColor         "black"
+    BackgroundColor         "white"
+    DropShadow              off
+    FontName                "Arial"
+    FontSize                10
+    FontWeight              "normal"
+    FontAngle               "normal"
+  }
+  LineDefaults {
+    FontName                "Arial"
+    FontSize                9
+    FontWeight              "normal"
+    FontAngle               "normal"
+  }
+  System {
+    Name                    "qcm_exec"
+    Location                [27, 52, 239, 454]
+    __ProjectState          "{\"runtime_mode\":0,\"tabs\":{\"windows\":[{\"tabs\":[{\"class\":\"mdl\",\"id\":\"qcm_exec.mdl\"},{\"class\":\"mdl\",\"id\":\"qcm.mdl\"}]},{\"geometry\":\"AdnQywADAAAAAABpAAAArgAAB4AAAAP5AAAAagAAANQAAAd/AAAD+AAAAAAAAAAAB4AAAABqAAAA1AAAB38AAAP4\",\"tabs\":[{\"class\":\"trend\",\"id\":\"qcm.TRNDV\"}]}]},\"watch_panel\":{\"signals\":[]}}"
+    #GUID                   f5ffee10-7913-470f-b666-c0336984f207
+    Block {
+      BlockType               Reference
+      Name                    "EXEC"
+      Ports                   [0, 8, 0, 0, 0]
+      Position                [15, 43, 60, 332]
+      SourceBlock             "execlib/EXEC"
+      target                  "Generic target device"
+      tick                    "0.002"
+      ntick0                  1
+      ntick1                  50
+      ntick2                  100
+      ntick3                  1200
+      pri0                    5
+      pri1                    9
+      pri2                    13
+      pri3                    18
+      FontSize                10
+      cpu0                    -1
+      cpu1                    -1
+      cpu2                    -1
+      cpu3                    -1
+      #GUID                   e88142d9-7671-4c96-918e-1bb0de78c747
+    }
+    Block {
+      BlockType               Reference
+      Name                    "HMI"
+      Ports                   [0, 0, 0, 0, 0]
+      Position                [95, 313, 140, 332]
+      SourceBlock             "execlib/HMI"
+      IncludeHMI              on
+      HmiDir                  "hmi"
+      SourceDir               "hmisrc"
+      GenerateWebWatch        off
+      GenerateRexHMI          off
+      RedirectToHMI           on
+      Compression             off
+      FontSize                10
+      #GUID                   27e6b452-f5da-4c1e-b784-0d54c9652b3c
+    }
+    Block {
+      BlockType               Reference
+      Name                    "qcm"
+      Ports                   [1, 1, 0, 0, 0]
+      Position                [95, 197, 145, 213]
+      SourceBlock             "execlib/TASK"
+      ShowName                on
+      NamePlacement           ""
+      factor                  1
+      start                   0
+      stop                    1
+      stack                   10240
+      filename                ""
+      MDLOPEN                 on
+      FontSize                10
+      #GUID                   85bc7725-5b9a-49db-bdb2-cceb7477a788
+    }
+    Line {
+      SrcBlock                "EXEC"
+      SrcPort                 5
+      DstBlock                "qcm"
+      DstPort                 1
+      #GUID                   dfbcd6f6-1105-4e29-92fc-632a999c3a0c
+    }
+    Annotation {
+      Position                [10, 10]
+      Text                    "Quater-car model"
+      FontWeight              "bold"
+      FontSize                16
+      HorizontalAlignment     "left"
+      VerticalAlignment       "top"
+      BackgroundColor         [1, 1, 1]
+      BgOpacity               100
+      Autosize                on
+      Width                   150
+      Height                  150
+      #GUID                   590291c8-0e77-4cdf-a7fb-59308fed54e0
+    }
+  }
+}

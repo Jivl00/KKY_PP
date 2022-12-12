@@ -1,0 +1,2369 @@
+Model {
+  Name                    "qcm"
+  Version                 3.00
+  #RexVersion             "2.50.12 rev. 14511, Date 2022-09-23"
+  ShowPortLabels          on
+  MaskType                "REX sequence"
+  MaskIconFrame           on
+  MaskIconOpaque          on
+  MaskIconRotate          "none"
+  MaskIconUnits           "autoscale"
+  SavedCharacterEncoding  "UTF-8"
+  BlockDefaults {
+    ForegroundColor         "black"
+    BackgroundColor         "white"
+    DropShadow              off
+    NamePlacement           "normal"
+    FontName                "Arial"
+    FontSize                10
+    FontWeight              "normal"
+    FontAngle               "normal"
+    ShowName                on
+    Orientation             "right"
+  }
+  AnnotationDefaults {
+    HorizontalAlignment     "center"
+    VerticalAlignment       "middle"
+    ForegroundColor         "black"
+    BackgroundColor         "white"
+    DropShadow              off
+    FontName                "Arial"
+    FontSize                10
+    FontWeight              "normal"
+    FontAngle               "normal"
+  }
+  LineDefaults {
+    FontName                "Arial"
+    FontSize                9
+    FontWeight              "normal"
+    FontAngle               "normal"
+  }
+  System {
+    Name                    "qcm"
+    Location                [276, 48, 1282, 426]
+    #GUID                   13a2f1bf-adc5-42ba-9f2b-f576939a6341
+    Block {
+      BlockType               Reference
+      Name                    "BINS"
+      Ports                   [1, 2, 0, 0, 0]
+      Position                [140, 198, 190, 222]
+      SourceBlock             "genlib/BINS"
+      Y0                      off
+      t1                      "0.1"
+      t2                      1
+      t3                      0
+      t4                      4
+      t5                      5
+      t6                      6
+      t7                      7
+      t8                      8
+      RPT                     off
+      FontSize                10
+      #GUID                   87538637-d154-432d-863f-7c89a91cc393
+    }
+    Block {
+      BlockType               Reference
+      Name                    "CNB_RUN"
+      Ports                   [0, 1, 0, 0, 0]
+      Position                [390, 208, 410, 222]
+      SourceBlock             "mathlib/CNB"
+      YCN                     on
+      FontSize                10
+      BackgroundColor         "magenta"
+      #GUID                   2f98f1d8-0396-425c-9131-ddb0489e0c2f
+    }
+    Block {
+      BlockType               Reference
+      Name                    "CNR_FD"
+      Ports                   [0, 1, 0, 0, 0]
+      Position                [65, 168, 115, 182]
+      SourceBlock             "mathlib/CNR"
+      ycn                     0
+      FontSize                10
+      BackgroundColor         "magenta"
+      #GUID                   5b8685c2-1c9f-4be3-8c5a-af0c8c04dbbd
+    }
+    Block {
+      BlockType               Reference
+      Name                    "CNR_FM"
+      Ports                   [0, 1, 0, 0, 0]
+      Position                [65, 98, 115, 112]
+      SourceBlock             "mathlib/CNR"
+      ycn                     0
+      FontSize                10
+      BackgroundColor         "magenta"
+      #GUID                   fb92c209-17c9-469d-aa11-dab433c622d5
+    }
+    Block {
+      BlockType               Reference
+      Name                    "EAS1"
+      Ports                   [4, 1, 0, 0, 0]
+      Position                [340, 167, 365, 213]
+      SourceBlock             "mathlib/EAS"
+      a                       1
+      b                       1
+      c                       1
+      d                       1
+      y0                      0
+      #GUID                   d50f74f2-d0e2-478c-8251-53deac715526
+    }
+    Block {
+      BlockType               Reference
+      Name                    "GAIN_NUDGE"
+      Ports                   [1, 1, 0, 0, 0]
+      Position                [220, 198, 245, 212]
+      SourceBlock             "mathlib/GAIN"
+      k                       1000
+      FontSize                10
+      BackgroundColor         "magenta"
+      #GUID                   3b0be7df-500f-43ff-b298-3f716ad9851e
+    }
+    Block {
+      BlockType               Reference
+      Name                    "MP_NUDGE"
+      Ports                   [0, 1, 0, 0, 0]
+      Position                [75, 203, 90, 217]
+      SourceBlock             "genlib/MP"
+      BSTATE                  off
+      pwidth                  "0.2"
+      RPTF                    off
+      FontSize                10
+      BackgroundColor         "magenta"
+      #GUID                   a319c565-634b-4b91-ab58-7c5517c81bbe
+    }
+    Block {
+      BlockType               Reference
+      Name                    "MP_RESET"
+      Ports                   [0, 1, 0, 0, 0]
+      Position                [430, 233, 445, 247]
+      SourceBlock             "genlib/MP"
+      BSTATE                  off
+      pwidth                  1
+      RPTF                    off
+      FontSize                10
+      BackgroundColor         "magenta"
+      #GUID                   9a6c7c32-d342-4911-a80d-5d57bc636f0a
+    }
+    Block {
+      BlockType               SubSystem
+      Name                    "Quater_car_model"
+      Ports                   [4, 5, 0, 0, 0]
+      Position                [500, 150, 625, 250]
+      FontSize                10
+      ShowPortLabels          on
+      MaskType                "REX sequence"
+      MaskPromptString        "stifness c. suspension|amplitude of susp pos. s"
+"ensor noise|base measured susp. pos.|base position of car mass|stifness c. tir"
+"e|damping c. suspension|damping. c. tire|quartercar mass|wheel mass|additional"
+" load mass"
+      MaskStyleString         "edit,edit,edit,edit,edit,edit,edit,edit,edit,ed"
+"it"
+      MaskTunableValueString  "on,on,on,on,on,on,on,on,on,on"
+      MaskCallbackString      "|||||||||"
+      MaskEnableString        "on,on,on,on,on,on,on,on,on,on"
+      MaskVisibilityString    "on,on,on,on,on,on,on,on,on,on"
+      MaskVariables           "k1=@1;noise_amp=@2;base_pos_susp=@3;base_pos_ca"
+"r=@4;k2=@5;b1=@6;b2=@7;m1=@8;m2=@9;m_l=@10"
+      MaskIconFrame           on
+      MaskIconOpaque          on
+      MaskIconRotate          "none"
+      MaskIconUnits           "autoscale"
+      MaskValueString         "44000|1|100|150|500000|1000|200|470|40|0"
+      #GUID                   9d9672de-0e8c-4244-a307-9ecadd0a2af4
+      System {
+        Name                    "Quater_car_model"
+        Location                [291, 168, 1842, 1268]
+        #GUID                   9d9672de-0e8c-4244-a307-9ecadd0a2af4
+        Block {
+          BlockType               Inport
+          Name                    "Fm"
+          Position                [65, 73, 95, 87]
+          Port                    1
+          FontSize                10
+          #GUID                   a88e826f-9648-4dfe-85b0-ecff0b4ce433
+        }
+        Block {
+          BlockType               Inport
+          Name                    "Fd"
+          Position                [65, 113, 95, 127]
+          Port                    2
+          FontSize                10
+          #GUID                   b903cf2a-d8fd-42e5-9c0f-541a06f2f8f3
+        }
+        Block {
+          BlockType               Inport
+          Name                    "RUN"
+          Position                [65, 153, 95, 167]
+          Port                    3
+          FontSize                10
+          #GUID                   749f357d-bd85-44e4-b274-5a79b22391e7
+        }
+        Block {
+          BlockType               Inport
+          Name                    "RESET"
+          Position                [65, 188, 95, 202]
+          Port                    4
+          FontSize                10
+          #GUID                   7dddda7c-711b-4970-82f9-33672d9ec6a3
+        }
+        Block {
+          BlockType               Reference
+          Name                    "ADD"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [215, 283, 240, 307]
+          SourceBlock             "mathlib/ADD"
+          #GUID                   46fa237f-3bd3-4048-8f8a-68232213fa24
+        }
+        Block {
+          BlockType               Reference
+          Name                    "ADD1"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [250, 373, 275, 397]
+          SourceBlock             "mathlib/ADD"
+          #GUID                   0b1840fa-727b-4569-964d-a2568e9643d2
+        }
+        Block {
+          BlockType               Reference
+          Name                    "ADD2"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [280, 288, 305, 312]
+          SourceBlock             "mathlib/ADD"
+          #GUID                   8acf282e-45d7-46af-b1f5-1de074f8873f
+        }
+        Block {
+          BlockType               Reference
+          Name                    "ADD3"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [300, 378, 325, 402]
+          SourceBlock             "mathlib/ADD"
+          #GUID                   b2592f65-22ff-490d-bc25-1ca053861226
+        }
+        Block {
+          BlockType               Reference
+          Name                    "ADD4"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [325, 758, 350, 782]
+          SourceBlock             "mathlib/ADD"
+          #GUID                   fc516730-895b-46a6-b23b-5abcee1f93a8
+        }
+        Block {
+          BlockType               Reference
+          Name                    "ADD5"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [940, 788, 965, 812]
+          SourceBlock             "mathlib/ADD"
+          #GUID                   08e8758b-b6c0-46f1-97b1-26d2b0311174
+        }
+        Block {
+          BlockType               Reference
+          Name                    "ADD6"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [325, 499, 350, 526]
+          SourceBlock             "mathlib/ADD"
+          #GUID                   aa2bf593-0bb9-42f3-a808-cb75d385691e
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR2"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [60, 663, 80, 677]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "m1"
+          FontSize                10
+          #GUID                   0f51010e-49d5-4008-add5-4798193dc472
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR3"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [60, 683, 80, 697]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "m2"
+          FontSize                10
+          #GUID                   0eb0de99-1ee5-430b-bece-c04e45d3c348
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR4"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [60, 708, 80, 722]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "m_l"
+          FontSize                10
+          #GUID                   048a1e65-2519-4aad-8a2e-5580619b7f17
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_b1"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [405, 908, 425, 922]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "b1"
+          FontSize                10
+          #GUID                   e6d1dcdf-2501-4b49-b4a4-60c072a909ef
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_b2"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [685, 863, 705, 877]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "b2"
+          FontSize                10
+          #GUID                   7914c6b9-a3e8-4f87-b554-177e97168a7d
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_base_pos_car"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [85, 313, 105, 327]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "base_pos_car"
+          FontSize                10
+          BackgroundColor         "yellow"
+          #GUID                   78d8bde4-3c30-4ef5-8e38-b8b861493632
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_base_pos_susp"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [190, 423, 210, 437]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "base_pos_susp"
+          FontSize                10
+          BackgroundColor         "yellow"
+          #GUID                   e504a991-5f11-4ee3-a13e-67536f47da43
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_k1"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [260, 753, 280, 767]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "k1"
+          FontSize                10
+          #GUID                   f0dc7b74-f72a-4bd4-ba57-817e2dab4070
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_k10"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [570, 588, 590, 602]
+          SourceBlock             "mathlib/CNR"
+          ycn                     1
+          FontSize                10
+          #GUID                   65d37170-de7a-4b7d-a288-547b0ca05703
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_k2"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [680, 793, 700, 807]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "k2"
+          FontSize                10
+          #GUID                   07cab89f-865c-47e9-a076-b69a94cec146
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_k3"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [575, 118, 595, 132]
+          SourceBlock             "mathlib/CNR"
+          ycn                     0
+          FontSize                10
+          #GUID                   e5843040-dd78-468d-a92a-79cb191e9991
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_k4"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [580, 268, 600, 282]
+          SourceBlock             "mathlib/CNR"
+          ycn                     0
+          FontSize                10
+          #GUID                   8c766804-c885-495d-bc24-f98e43f80b1d
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_k5"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [575, 428, 595, 442]
+          SourceBlock             "mathlib/CNR"
+          ycn                     0
+          FontSize                10
+          #GUID                   e952822c-31c3-48a5-bdee-62807f746633
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_k6"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [570, 568, 590, 582]
+          SourceBlock             "mathlib/CNR"
+          ycn                     0
+          FontSize                10
+          #GUID                   d43b1561-6547-4e53-af7f-3608cb8f8cd9
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_k7"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [575, 138, 595, 152]
+          SourceBlock             "mathlib/CNR"
+          ycn                     1
+          FontSize                10
+          #GUID                   251e117f-c802-48e7-9bce-864f7f85118c
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_k8"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [580, 288, 600, 302]
+          SourceBlock             "mathlib/CNR"
+          ycn                     1
+          FontSize                10
+          #GUID                   497cc97c-cb25-43f9-8292-14778e2bc404
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_k9"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [575, 448, 595, 462]
+          SourceBlock             "mathlib/CNR"
+          ycn                     1
+          FontSize                10
+          #GUID                   5ce085db-e439-4f3c-b425-d9c47217c0ec
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_m1"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [795, 1018, 815, 1032]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "m1"
+          FontSize                10
+          #GUID                   a9092a3b-b5bc-423a-b8fd-256ed30dd427
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_m2"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [890, 788, 910, 802]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "m2"
+          FontSize                10
+          #GUID                   d8dac6a0-4cb6-426a-aa1c-a02eb1783bf1
+        }
+        Block {
+          BlockType               Reference
+          Name                    "CNR_m3"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [890, 823, 910, 837]
+          SourceBlock             "mathlib/CNR"
+          ycn                     "m_l"
+          FontSize                10
+          #GUID                   aa81d248-c4df-4a22-8586-f8504471760e
+        }
+        Block {
+          BlockType               Reference
+          Name                    "DIV"
+          Ports                   [2, 2, 0, 0, 0]
+          Position                [975, 738, 1000, 762]
+          SourceBlock             "mathlib/DIV"
+          yerr                    1
+          #GUID                   4e87a447-d7fe-47dc-b3a2-fb63a085270e
+        }
+        Block {
+          BlockType               Reference
+          Name                    "DIV1"
+          Ports                   [2, 2, 0, 0, 0]
+          Position                [850, 983, 875, 1007]
+          SourceBlock             "mathlib/DIV"
+          yerr                    1
+          #GUID                   28645283-4d35-4b45-ac05-3958ba4dedbc
+        }
+        Block {
+          BlockType               Reference
+          Name                    "EAS"
+          Ports                   [4, 1, 0, 0, 0]
+          Position                [620, 697, 645, 743]
+          SourceBlock             "mathlib/EAS"
+          a                       1
+          b                       1
+          c                       1
+          d                       1
+          y0                      0
+          #GUID                   5662ecb0-e7cd-4d09-82fc-925678fca561
+        }
+        Block {
+          BlockType               Reference
+          Name                    "EAS1"
+          Ports                   [4, 1, 0, 0, 0]
+          Position                [865, 710, 895, 775]
+          SourceBlock             "mathlib/EAS"
+          a                       1
+          b                       1
+          c                       1
+          d                       1
+          y0                      0
+          #GUID                   d557e181-80b1-4892-ab76-a7f9ae182188
+        }
+        Block {
+          BlockType               Reference
+          Name                    "EAS2"
+          Ports                   [4, 1, 0, 0, 0]
+          Position                [620, 967, 645, 1013]
+          SourceBlock             "mathlib/EAS"
+          a                       1
+          b                       1
+          c                       1
+          d                       1
+          y0                      0
+          #GUID                   206e98d8-f5dd-4b0f-bb55-5ce8c5585375
+        }
+        Block {
+          BlockType               Reference
+          Name                    "EAS3"
+          Ports                   [4, 1, 0, 0, 0]
+          Position                [265, 642, 290, 688]
+          SourceBlock             "mathlib/EAS"
+          a                       1
+          b                       1
+          c                       1
+          d                       1
+          y0                      0
+          #GUID                   1f503694-de00-4fe5-8078-5c700c65ff66
+        }
+        Block {
+          BlockType               Reference
+          Name                    "EAS4"
+          Ports                   [4, 1, 0, 0, 0]
+          Position                [125, 662, 150, 708]
+          SourceBlock             "mathlib/EAS"
+          a                       1
+          b                       1
+          c                       1
+          d                       1
+          y0                      0
+          #GUID                   b5135766-f618-4df4-9d05-994fa322ee06
+        }
+        Block {
+          BlockType               From
+          Name                    "From"
+          Position                [485, 58, 575, 72]
+          ShowName                off
+          GotoTag                 "x3"
+          FontSize                10
+          #GUID                   b9c54def-29c8-4e81-8446-ddd490c4fad1
+        }
+        Block {
+          BlockType               From
+          Name                    "From1"
+          Position                [475, 208, 565, 222]
+          ShowName                off
+          GotoTag                 "x4"
+          FontSize                10
+          #GUID                   5ea1ede3-7b86-4463-be98-695bdc4a9593
+        }
+        Block {
+          BlockType               From
+          Name                    "From10"
+          Position                [370, 848, 460, 862]
+          ShowName                off
+          GotoTag                 "x3"
+          FontSize                10
+          #GUID                   6e9a5ec3-97ef-4eda-b0ed-4a046096be8a
+        }
+        Block {
+          BlockType               From
+          Name                    "From11"
+          Position                [370, 868, 460, 882]
+          ShowName                off
+          GotoTag                 "x4"
+          FontSize                10
+          #GUID                   6545f607-6ecd-4495-8711-094bbcc79579
+        }
+        Block {
+          BlockType               From
+          Name                    "From12"
+          Position                [625, 768, 715, 782]
+          ShowName                off
+          GotoTag                 "x2"
+          FontSize                10
+          #GUID                   1714f04e-a994-448e-815d-4f10c1a5e87a
+        }
+        Block {
+          BlockType               From
+          Name                    "From13"
+          Position                [630, 838, 720, 852]
+          ShowName                off
+          GotoTag                 "x4"
+          FontSize                10
+          #GUID                   8056294c-247d-4ed7-a197-83e11e1212f2
+        }
+        Block {
+          BlockType               From
+          Name                    "From14"
+          Position                [510, 388, 600, 402]
+          ShowName                off
+          GotoTag                 "RUN"
+          FontSize                10
+          #GUID                   a7754e89-443e-42fc-9037-7c7a8ed68cdb
+        }
+        Block {
+          BlockType               From
+          Name                    "From15"
+          Position                [510, 408, 600, 422]
+          ShowName                off
+          GotoTag                 "RES"
+          FontSize                10
+          #GUID                   5ce5acfa-5bb8-421d-807f-b26f4c7c79f8
+        }
+        Block {
+          BlockType               From
+          Name                    "From16"
+          Position                [500, 528, 590, 542]
+          ShowName                off
+          GotoTag                 "RUN"
+          FontSize                10
+          #GUID                   fe046af9-7e55-4054-9303-0235be4538d0
+        }
+        Block {
+          BlockType               From
+          Name                    "From17"
+          Position                [500, 548, 590, 562]
+          ShowName                off
+          GotoTag                 "RES"
+          FontSize                10
+          #GUID                   9f9bed6a-5974-423c-a490-ce3dce21006a
+        }
+        Block {
+          BlockType               From
+          Name                    "From18"
+          Position                [500, 508, 590, 522]
+          ShowName                off
+          GotoTag                 "dx4"
+          FontSize                10
+          #GUID                   66caccbc-bd0b-4aed-9470-a8b987c70576
+        }
+        Block {
+          BlockType               From
+          Name                    "From19"
+          Position                [370, 1118, 460, 1132]
+          ShowName                off
+          GotoTag                 "x4"
+          FontSize                10
+          #GUID                   233a26aa-bdd8-4a87-ae83-c290c8b80775
+        }
+        Block {
+          BlockType               From
+          Name                    "From2"
+          Position                [485, 78, 575, 92]
+          ShowName                off
+          GotoTag                 "RUN"
+          FontSize                10
+          #GUID                   f3db0841-8651-4475-a8e9-aa6f66d2a48a
+        }
+        Block {
+          BlockType               From
+          Name                    "From20"
+          Position                [370, 1138, 460, 1152]
+          ShowName                off
+          GotoTag                 "x3"
+          FontSize                10
+          #GUID                   d4398663-0e56-439a-9073-d595a96528c1
+        }
+        Block {
+          BlockType               From
+          Name                    "From21"
+          Position                [40, 363, 130, 377]
+          ShowName                off
+          GotoTag                 "x1"
+          FontSize                10
+          #GUID                   6a364383-a64c-41aa-91a6-66afc9b9d631
+        }
+        Block {
+          BlockType               From
+          Name                    "From22"
+          Position                [5, 803, 95, 817]
+          ShowName                off
+          GotoTag                 "x1"
+          FontSize                10
+          #GUID                   e5bbc61b-44d9-44de-b8c3-db37ea400ef6
+        }
+        Block {
+          BlockType               From
+          Name                    "From23"
+          Position                [135, 968, 225, 982]
+          ShowName                off
+          GotoTag                 "Fm"
+          FontSize                10
+          #GUID                   a86a10e6-5cbb-4469-a45c-f981c2a5b91b
+        }
+        Block {
+          BlockType               From
+          Name                    "From24"
+          Position                [5, 833, 95, 847]
+          ShowName                off
+          GotoTag                 "x2"
+          FontSize                10
+          #GUID                   e4d37796-6bf5-4b16-8d32-ecdd385e51fb
+        }
+        Block {
+          BlockType               From
+          Name                    "From25"
+          Position                [370, 998, 460, 1012]
+          ShowName                off
+          GotoTag                 "x2"
+          FontSize                10
+          #GUID                   5b5b8f1b-6d1b-4be6-b12f-0a12ecde630b
+        }
+        Block {
+          BlockType               From
+          Name                    "From26"
+          Position                [370, 1073, 460, 1087]
+          ShowName                off
+          GotoTag                 "x1"
+          FontSize                10
+          #GUID                   3e1007e8-6640-4680-a695-e0946edffe7c
+        }
+        Block {
+          BlockType               From
+          Name                    "From27"
+          Position                [370, 1034, 430, 1046]
+          ShowName                off
+          GotoTag                 "k1"
+          FontSize                10
+          #GUID                   7e678abc-99c4-45cc-896a-e9488ae3d9ce
+        }
+        Block {
+          BlockType               From
+          Name                    "From28"
+          Position                [405, 1164, 465, 1176]
+          ShowName                off
+          GotoTag                 "b1"
+          FontSize                10
+          #GUID                   a36a6025-f87b-47be-8b4d-f0c4e39387d1
+        }
+        Block {
+          BlockType               From
+          Name                    "From29"
+          Position                [215, 598, 305, 612]
+          ShowName                off
+          GotoTag                 "dx3"
+          FontSize                10
+          #GUID                   2218c8fb-2ed0-457e-a08a-e3cacde1a792
+        }
+        Block {
+          BlockType               From
+          Name                    "From3"
+          Position                [485, 98, 575, 112]
+          ShowName                off
+          GotoTag                 "RES"
+          FontSize                10
+          #GUID                   938f5fe5-8b7b-4216-bfef-31ec389ad7ad
+        }
+        Block {
+          BlockType               From
+          Name                    "From30"
+          Position                [115, 638, 205, 652]
+          ShowName                off
+          GotoTag                 "F4"
+          FontSize                10
+          #GUID                   b5a30e39-34b0-4e80-8ff7-bd43a76695ad
+        }
+        Block {
+          BlockType               From
+          Name                    "From31"
+          Position                [40, 283, 130, 297]
+          ShowName                off
+          GotoTag                 "x1"
+          FontSize                10
+          #GUID                   46e16c92-e363-46dd-a1b9-6c11e0fb16c0
+        }
+        Block {
+          BlockType               From
+          Name                    "From32"
+          Position                [40, 388, 130, 402]
+          ShowName                off
+          GotoTag                 "x2"
+          FontSize                10
+          #GUID                   f7e3c195-8cc2-4036-95a2-f80ab1bc0d41
+        }
+        Block {
+          BlockType               From
+          Name                    "From33"
+          Position                [25, 498, 115, 512]
+          ShowName                off
+          GotoTag                 "x2"
+          FontSize                10
+          #GUID                   611653fd-c5d8-4211-b98e-8dc1397ba92c
+        }
+        Block {
+          BlockType               From
+          Name                    "From35"
+          Position                [510, 368, 600, 382]
+          ShowName                off
+          GotoTag                 "dx3"
+          FontSize                10
+          #GUID                   db37e0aa-aed3-4d5e-a7b3-03d75a8b5092
+        }
+        Block {
+          BlockType               From
+          Name                    "From4"
+          Position                [475, 228, 565, 242]
+          ShowName                off
+          GotoTag                 "RUN"
+          FontSize                10
+          #GUID                   95a9140f-8bac-4b4c-9dc0-0b17141ff5c4
+        }
+        Block {
+          BlockType               From
+          Name                    "From5"
+          Position                [475, 248, 565, 262]
+          ShowName                off
+          GotoTag                 "RES"
+          FontSize                10
+          #GUID                   67df98f5-4a47-4ba8-b213-d232bb54a098
+        }
+        Block {
+          BlockType               From
+          Name                    "From6"
+          Position                [370, 698, 460, 712]
+          ShowName                off
+          GotoTag                 "Fm"
+          FontSize                10
+          #GUID                   2b173aec-6170-4900-8bf7-4e4c66ba51f7
+        }
+        Block {
+          BlockType               From
+          Name                    "From7"
+          Position                [655, 728, 745, 742]
+          ShowName                off
+          GotoTag                 "Fd"
+          FontSize                10
+          #GUID                   1a546160-a114-422f-8773-d7ad922977b9
+        }
+        Block {
+          BlockType               From
+          Name                    "From8"
+          Position                [370, 728, 460, 742]
+          ShowName                off
+          GotoTag                 "x1"
+          FontSize                10
+          #GUID                   afc35faf-cdf2-4643-b0a7-f58f01f42b8f
+        }
+        Block {
+          BlockType               From
+          Name                    "From9"
+          Position                [370, 803, 460, 817]
+          ShowName                off
+          GotoTag                 "x2"
+          FontSize                10
+          #GUID                   0e9be674-71e1-4361-82d9-02bf4fbd7b91
+        }
+        Block {
+          BlockType               Reference
+          Name                    "GAIN"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [490, 698, 515, 712]
+          SourceBlock             "mathlib/GAIN"
+          k                       -1
+          FontSize                10
+          #GUID                   3fc2f119-9f78-4b41-bd7a-ce1a5343713e
+        }
+        Block {
+          BlockType               Reference
+          Name                    "GAIN1"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [535, 798, 560, 812]
+          SourceBlock             "mathlib/GAIN"
+          k                       -1
+          FontSize                10
+          #GUID                   6d0374db-98b2-43d7-9c53-bbec81fc0879
+        }
+        Block {
+          BlockType               Reference
+          Name                    "GAIN2"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [780, 773, 805, 787]
+          SourceBlock             "mathlib/GAIN"
+          k                       -1
+          FontSize                10
+          #GUID                   374ba003-e714-41e6-a107-da297650a140
+        }
+        Block {
+          BlockType               Reference
+          Name                    "GAIN3"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [785, 843, 810, 857]
+          SourceBlock             "mathlib/GAIN"
+          k                       -1
+          FontSize                10
+          #GUID                   57975367-88d0-40a3-876c-4b0fc99f17b2
+        }
+        Block {
+          BlockType               Reference
+          Name                    "GAIN4"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [205, 368, 230, 382]
+          SourceBlock             "mathlib/GAIN"
+          k                       1000
+          FontSize                10
+          #GUID                   cd6a408b-6335-4fce-8bae-ba4e1b619ad3
+        }
+        Block {
+          BlockType               Reference
+          Name                    "GAIN5"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [535, 1068, 560, 1082]
+          SourceBlock             "mathlib/GAIN"
+          k                       -1
+          FontSize                10
+          #GUID                   6efe8f6d-19cc-446d-92e8-60da0d0a0f1a
+        }
+        Block {
+          BlockType               Reference
+          Name                    "GAIN6"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [270, 803, 295, 817]
+          SourceBlock             "mathlib/GAIN"
+          k                       "1e7"
+          FontSize                10
+          #GUID                   907b0fd4-702a-4fe4-ac2d-df644409052a
+        }
+        Block {
+          BlockType               Reference
+          Name                    "GAIN7"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [150, 283, 175, 297]
+          SourceBlock             "mathlib/GAIN"
+          k                       1000
+          FontSize                10
+          #GUID                   bafcd673-f261-421a-8bdb-e06af924f014
+        }
+        Block {
+          BlockType               Reference
+          Name                    "GAIN8"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [195, 678, 220, 692]
+          SourceBlock             "mathlib/GAIN"
+          k                       "9.81"
+          FontSize                10
+          #GUID                   f16b57bb-1c4c-4dfb-be92-c5a8817df237
+        }
+        Block {
+          BlockType               Reference
+          Name                    "GAIN9"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [140, 498, 165, 512]
+          SourceBlock             "mathlib/GAIN"
+          k                       1000
+          FontSize                10
+          #GUID                   f13b927e-0d76-4375-8469-d28078a31dff
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto"
+          Position                [780, 63, 870, 77]
+          ShowName                off
+          GotoTag                 "x1"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   62d8d45a-2fb2-419b-b69e-0b25a765e841
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto1"
+          Position                [775, 213, 865, 227]
+          ShowName                off
+          GotoTag                 "x2"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   c4ac9070-053d-445d-bd5c-d310459db8bf
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto10"
+          Position                [135, 73, 225, 87]
+          ShowName                off
+          GotoTag                 "Fm"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   464862e2-978c-47ab-8238-59a81c466f7b
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto11"
+          Position                [135, 113, 225, 127]
+          ShowName                off
+          GotoTag                 "Fd"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   679245f6-2fae-4e41-8ec8-bf1b26594ad3
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto12"
+          Position                [135, 153, 225, 167]
+          ShowName                off
+          GotoTag                 "RUN"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   a45b48f9-e1cd-4a41-b680-b7850e9e490e
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto13"
+          Position                [135, 188, 225, 202]
+          ShowName                off
+          GotoTag                 "RES"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   6331c050-df78-4fa4-86ef-d99902f4ba9a
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto14"
+          Position                [980, 698, 1070, 712]
+          ShowName                off
+          GotoTag                 "F4"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   37af3405-e1f5-47d2-8d95-f88099df754a
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto2"
+          Position                [755, 373, 845, 387]
+          ShowName                off
+          GotoTag                 "x3"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   81f70a45-d42f-4fa0-8561-c921ff6a7c44
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto3"
+          Position                [755, 513, 845, 527]
+          ShowName                off
+          GotoTag                 "x4"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   e65b907a-754a-4db5-8439-7d3cfab89d87
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto4"
+          Position                [1040, 738, 1130, 752]
+          ShowName                off
+          GotoTag                 "dx4"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   e3d78b9c-a019-4ada-a1cc-d5c4451b646b
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto5"
+          Position                [930, 983, 1020, 997]
+          ShowName                off
+          GotoTag                 "dx3"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   ca8b8462-045b-442d-9cf9-d20dcdddd560
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto6"
+          Position                [500, 761, 555, 779]
+          ShowName                off
+          GotoTag                 "k1"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   52dc84ce-7a6c-4b23-8918-fbb1203f93ff
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto7"
+          Position                [460, 926, 515, 944]
+          ShowName                off
+          GotoTag                 "b1"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   b37b1566-3eb2-4f72-b449-e0b42c223085
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto8"
+          Position                [750, 811, 805, 829]
+          ShowName                off
+          GotoTag                 "k2"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   ee420da1-066f-4a7c-8ad7-16d51a49afb1
+        }
+        Block {
+          BlockType               Goto
+          Name                    "Goto9"
+          Position                [775, 886, 830, 904]
+          ShowName                off
+          GotoTag                 "b2"
+          TagVisibility           "local"
+          FontSize                10
+          #GUID                   ee4342e9-bffa-4d23-8a43-76a7a48a7764
+        }
+        Block {
+          BlockType               Reference
+          Name                    "MUL"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [490, 728, 515, 752]
+          SourceBlock             "mathlib/MUL"
+          #GUID                   94723738-ac00-485e-b53c-bc350200508f
+        }
+        Block {
+          BlockType               Reference
+          Name                    "MUL1"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [490, 793, 515, 817]
+          SourceBlock             "mathlib/MUL"
+          #GUID                   ace6b9c4-05df-4a0f-b963-2915c83b3b4e
+        }
+        Block {
+          BlockType               Reference
+          Name                    "MUL2"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [535, 853, 560, 877]
+          SourceBlock             "mathlib/MUL"
+          #GUID                   3930c0dc-4012-4f6d-99a5-c3a46dd6c44f
+        }
+        Block {
+          BlockType               Reference
+          Name                    "MUL3"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [740, 768, 765, 792]
+          SourceBlock             "mathlib/MUL"
+          #GUID                   195c1691-484f-4c04-8978-4595f7ea8b95
+        }
+        Block {
+          BlockType               Reference
+          Name                    "MUL4"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [745, 838, 770, 862]
+          SourceBlock             "mathlib/MUL"
+          #GUID                   fd287a54-9ae5-4fe5-a37c-263782b25321
+        }
+        Block {
+          BlockType               Reference
+          Name                    "MUL5"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [490, 998, 515, 1022]
+          SourceBlock             "mathlib/MUL"
+          #GUID                   4cfd325e-e53e-455f-8cb4-f5034bd0981d
+        }
+        Block {
+          BlockType               Reference
+          Name                    "MUL6"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [490, 1063, 515, 1087]
+          SourceBlock             "mathlib/MUL"
+          #GUID                   f9b130a2-70b3-4a56-bd77-52281f8a9417
+        }
+        Block {
+          BlockType               Reference
+          Name                    "MUL7"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [535, 1123, 560, 1147]
+          SourceBlock             "mathlib/MUL"
+          #GUID                   d27dab44-2a5e-4936-b7a0-be7e256d290a
+        }
+        Block {
+          BlockType               Reference
+          Name                    "RLIM"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [325, 968, 350, 982]
+          SourceBlock             "analoglib/RLIM"
+          tp                      "2E-05"
+          tn                      "2E-05"
+          FontSize                10
+          #GUID                   e2ba5339-8d42-4e6a-8d7f-93343660bd57
+        }
+        Block {
+          BlockType               Reference
+          Name                    "SAT"
+          Ports                   [3, 3, 0, 0, 0]
+          Position                [265, 968, 295, 1002]
+          SourceBlock             "reglib/SAT"
+          tp                      1
+          tn                      1
+          hilim0                  5000
+          lolim0                  -5000
+          HLD                     on
+          FontSize                10
+          #GUID                   78aa2468-cfa4-4e4f-984f-72c81fad51a8
+        }
+        Block {
+          BlockType               Reference
+          Name                    "SG"
+          Ports                   [0, 1, 0, 0, 0]
+          Position                [220, 333, 245, 347]
+          SourceBlock             "genlib/SG"
+          isig                    "4: RANDOM"
+          amp                     "noise_amp"
+          freq                    200
+          phase                   0
+          offset                  0
+          ifrunit                 "1: Hz"
+          iphunit                 "1: degrees"
+          FontSize                10
+          #GUID                   d5d8e126-80d1-49d1-8755-02787cf91214
+        }
+        Block {
+          BlockType               Reference
+          Name                    "SQR"
+          Ports                   [1, 1, 0, 0, 0]
+          Position                [215, 803, 240, 817]
+          SourceBlock             "mathlib/SQR"
+          #GUID                   2aaad125-5d7e-4feb-a678-f017b48c62c8
+        }
+        Block {
+          BlockType               Reference
+          Name                    "SUB"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [485, 848, 510, 872]
+          SourceBlock             "mathlib/SUB"
+          #GUID                   a41fe24b-b108-4703-b3d1-0131171bc128
+        }
+        Block {
+          BlockType               Reference
+          Name                    "SUB1"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [485, 1118, 510, 1142]
+          SourceBlock             "mathlib/SUB"
+          #GUID                   28a713f3-a0b9-4a2e-9d33-0d914d203851
+        }
+        Block {
+          BlockType               Reference
+          Name                    "SUB2"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [160, 363, 185, 387]
+          SourceBlock             "mathlib/SUB"
+          #GUID                   36f0e554-83fb-442c-bfa7-13778ca7921a
+        }
+        Block {
+          BlockType               Reference
+          Name                    "SUB3"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [125, 808, 150, 832]
+          SourceBlock             "mathlib/SUB"
+          #GUID                   c233349c-52ff-4d02-a2c1-ed99a4badc35
+        }
+        Block {
+          BlockType               Reference
+          Name                    "SUB4"
+          Ports                   [2, 1, 0, 0, 0]
+          Position                [280, 508, 305, 532]
+          SourceBlock             "mathlib/SUB"
+          #GUID                   009f6304-8fcb-45a4-b58e-985e4b9378b2
+        }
+        Block {
+          BlockType               Reference
+          Name                    "x1"
+          Ports                   [5, 4, 0, 0, 0]
+          Position                [655, 57, 720, 153]
+          SourceBlock             "analoglib/INTE"
+          ymin                    -1
+          ymax                    1
+          FontSize                10
+          SAT                     off
+          #GUID                   ac3778c4-e801-4b0b-933b-e47c080ade74
+        }
+        Block {
+          BlockType               Reference
+          Name                    "x2"
+          Ports                   [5, 4, 0, 0, 0]
+          Position                [655, 207, 720, 303]
+          SourceBlock             "analoglib/INTE"
+          ymin                    -1
+          ymax                    1
+          FontSize                10
+          SAT                     off
+          #GUID                   87c5b02c-995b-4986-b4ed-eada70385d34
+        }
+        Block {
+          BlockType               Reference
+          Name                    "x3"
+          Ports                   [5, 4, 0, 0, 0]
+          Position                [650, 367, 715, 463]
+          SourceBlock             "analoglib/INTE"
+          ymin                    "-1e10"
+          ymax                    "1e10"
+          FontSize                10
+          SAT                     off
+          #GUID                   4a76fd4a-e599-4e10-8108-12f26c9f2c06
+        }
+        Block {
+          BlockType               Reference
+          Name                    "x4"
+          Ports                   [5, 4, 0, 0, 0]
+          Position                [650, 507, 715, 603]
+          SourceBlock             "analoglib/INTE"
+          ymin                    "-1e10"
+          ymax                    "1e10"
+          FontSize                10
+          SAT                     off
+          #GUID                   9c3f0091-d7ac-4875-bd0c-e525fec27a7d
+        }
+        Block {
+          BlockType               Outport
+          Name                    "pos_car_abs"
+          Position                [335, 288, 365, 302]
+          Port                    1
+          FontSize                10
+          #GUID                   57fe24af-2c62-46a5-a6a6-a4b939efda06
+        }
+        Block {
+          BlockType               Outport
+          Name                    "pos_susp_meas"
+          Position                [345, 378, 375, 392]
+          Port                    2
+          FontSize                10
+          #GUID                   d1b545dd-7926-46db-9397-2942fb65cb81
+        }
+        Block {
+          BlockType               Outport
+          Name                    "pos_wheel"
+          Position                [375, 508, 405, 522]
+          Port                    3
+          OutDataTypeStr          "Inherit: auto"
+          FontSize                10
+          #GUID                   63bd7b5b-833f-487b-93f2-13b8d4ffdbb5
+        }
+        Block {
+          BlockType               Outport
+          Name                    "acc_car"
+          Position                [345, 598, 375, 612]
+          Port                    4
+          FontSize                10
+          #GUID                   84c5206b-3823-4bc2-a12b-41eed1a4f829
+        }
+        Block {
+          BlockType               Outport
+          Name                    "Fl_tire"
+          Position                [345, 648, 375, 662]
+          Port                    5
+          FontSize                10
+          #GUID                   c9544722-82ef-4762-9df8-6bbac0acd713
+        }
+        Line {
+          SrcBlock                "ADD"
+          SrcPort                 1
+          DstBlock                "ADD2"
+          DstPort                 1
+          #GUID                   37a8562a-0c4e-4bae-a2b3-be3db34b234d
+        }
+        Line {
+          SrcBlock                "ADD1"
+          SrcPort                 1
+          DstBlock                "ADD3"
+          DstPort                 1
+          #GUID                   f4bdedfe-48df-4ee5-8e69-721cbd95bdc3
+        }
+        Line {
+          SrcBlock                "ADD2"
+          SrcPort                 1
+          Points                  [10, 0]
+          DstBlock                "pos_car_abs"
+          DstPort                 1
+          #GUID                   87a8664e-c9d0-499d-a589-b178a1cd5fa5
+        }
+        Line {
+          SrcBlock                "ADD3"
+          SrcPort                 1
+          DstBlock                "pos_susp_meas"
+          DstPort                 1
+          #GUID                   7c182225-d297-48e6-9ad6-c7bdbc6f0f29
+        }
+        Line {
+          SrcBlock                "ADD4"
+          SrcPort                 1
+          DstBlock                "Goto6"
+          DstPort                 1
+          #GUID                   88b6b164-1131-49de-ad15-b1dbc4a52022
+        }
+        Line {
+          SrcBlock                "ADD5"
+          SrcPort                 1
+          Points                  [0, -45]
+          DstBlock                "DIV"
+          DstPort                 2
+          #GUID                   61b032e3-bed7-422d-af59-0c553c00cc77
+        }
+        Line {
+          SrcBlock                "ADD6"
+          SrcPort                 1
+          DstBlock                "pos_wheel"
+          DstPort                 1
+          #GUID                   4dfdb06d-1c82-4fbf-b05a-254ec924db61
+        }
+        Line {
+          SrcBlock                "CNR2"
+          SrcPort                 1
+          DstBlock                "EAS4"
+          DstPort                 1
+          #GUID                   ad68b0bd-5fa3-4c1a-aa1a-2a1aabbb85c4
+        }
+        Line {
+          SrcBlock                "CNR3"
+          SrcPort                 1
+          Points                  [0, -10]
+          DstBlock                "EAS4"
+          DstPort                 2
+          #GUID                   69d3b937-aff6-499b-ac6d-d47dcac65f2f
+        }
+        Line {
+          SrcBlock                "CNR4"
+          SrcPort                 1
+          Points                  [25, 0]
+          DstBlock                "EAS4"
+          DstPort                 3
+          #GUID                   2a625cc6-a213-485a-b59c-8427212f06c7
+        }
+        Line {
+          SrcBlock                "CNR_b1"
+          SrcPort                 1
+          Points                  [10, 0]
+          #GUID                   7c326324-15be-4010-bc98-99c5d672508d
+          Branch {
+            Points                  [0, 20]
+            DstBlock                "Goto7"
+            DstPort                 1
+            #GUID                   38021a7f-a5a5-4c9e-bdd8-c35a1cd3d2c8
+          }
+          Branch {
+            Points                  [80, 0]
+            DstBlock                "MUL2"
+            DstPort                 2
+            #GUID                   b6ba5084-b516-4edf-94fe-462767485af8
+          }
+        }
+        Line {
+          SrcBlock                "CNR_b2"
+          SrcPort                 1
+          Points                  [15, 0]
+          #GUID                   f9ecda3b-ac26-4142-bceb-4c84d83b4530
+          Branch {
+            Points                  [0, 25]
+            DstBlock                "Goto9"
+            DstPort                 1
+            #GUID                   25fef2ce-2ede-4d70-9454-b8ae99f7de78
+          }
+          Branch {
+            Points                  [5, 0]
+            DstBlock                "MUL4"
+            DstPort                 2
+            #GUID                   ec77d75d-0a21-4bf6-a036-09cc142e028c
+          }
+        }
+        Line {
+          SrcBlock                "CNR_base_pos_car"
+          SrcPort                 1
+          Points                  [35, 0]
+          #GUID                   ec9bc920-ef53-47cc-9fef-5d4e8cdbe797
+          Branch {
+            Points                  [55, 0]
+            DstBlock                "ADD"
+            DstPort                 2
+            #GUID                   074500cc-d72d-4b98-871e-7ed4426913f9
+          }
+          Branch {
+            Points                  [0, 150; 120, 0]
+            DstBlock                "SUB4"
+            DstPort                 1
+            #GUID                   001b58e3-2e9c-44a3-b021-67c7f3a9d85c
+          }
+        }
+        Line {
+          SrcBlock                "CNR_base_pos_susp"
+          SrcPort                 1
+          Points                  [20, 0]
+          #GUID                   1a0512a2-3883-4f51-aa3e-49e26a016ea1
+          Branch {
+            DstBlock                "ADD1"
+            DstPort                 2
+            #GUID                   518e7bfa-72d7-4821-9781-81b2bc755599
+          }
+          Branch {
+            Points                  [25, 0; 0, 95]
+            DstBlock                "SUB4"
+            DstPort                 2
+            #GUID                   0add1d12-e091-4686-a52f-b1e583bcb0bd
+          }
+        }
+        Line {
+          SrcBlock                "CNR_k1"
+          SrcPort                 1
+          Points                  [25, 0]
+          DstBlock                "ADD4"
+          DstPort                 1
+          #GUID                   3f665297-a544-405d-9bf2-270f8412c38f
+        }
+        Line {
+          SrcBlock                "CNR_k10"
+          SrcPort                 1
+          DstBlock                "x4"
+          DstPort                 5
+          #GUID                   93a6ac63-de27-4c90-92d5-0ba2204a9b25
+        }
+        Line {
+          SrcBlock                "CNR_k2"
+          SrcPort                 1
+          Points                  [20, 0]
+          #GUID                   d61ff0f1-39e6-4616-8d2c-6fffa2a9db36
+          Branch {
+            Points                  [10, 0]
+            DstBlock                "Goto8"
+            DstPort                 1
+            #GUID                   a1def098-20e6-4de8-9ac1-db98815c6a61
+          }
+          Branch {
+            DstBlock                "MUL3"
+            DstPort                 2
+            #GUID                   56e2e4d4-f708-439d-9966-df57d37ee312
+          }
+        }
+        Line {
+          SrcBlock                "CNR_k3"
+          SrcPort                 1
+          DstBlock                "x1"
+          DstPort                 4
+          #GUID                   bc5b987b-ae1f-4c61-ae74-755abdeeea65
+        }
+        Line {
+          SrcBlock                "CNR_k4"
+          SrcPort                 1
+          DstBlock                "x2"
+          DstPort                 4
+          #GUID                   d3b9c2f3-3ffb-4d10-9d04-886206654668
+        }
+        Line {
+          SrcBlock                "CNR_k5"
+          SrcPort                 1
+          DstBlock                "x3"
+          DstPort                 4
+          #GUID                   889bf8e8-68d6-4c84-b921-950fe6c4b203
+        }
+        Line {
+          SrcBlock                "CNR_k6"
+          SrcPort                 1
+          DstBlock                "x4"
+          DstPort                 4
+          #GUID                   d48f4d92-a805-4cb4-af9d-db73af97aa7e
+        }
+        Line {
+          SrcBlock                "CNR_k7"
+          SrcPort                 1
+          DstBlock                "x1"
+          DstPort                 5
+          #GUID                   305f4aff-8aa1-4979-831b-12f84564c59a
+        }
+        Line {
+          SrcBlock                "CNR_k8"
+          SrcPort                 1
+          DstBlock                "x2"
+          DstPort                 5
+          #GUID                   98dabac6-0f28-4844-9de4-54aeb13bbdad
+        }
+        Line {
+          SrcBlock                "CNR_k9"
+          SrcPort                 1
+          DstBlock                "x3"
+          DstPort                 5
+          #GUID                   f8b8dd3d-8360-42e7-8ca2-457ceb844a00
+        }
+        Line {
+          SrcBlock                "CNR_m1"
+          SrcPort                 1
+          Points                  [15, 0]
+          DstBlock                "DIV1"
+          DstPort                 2
+          #GUID                   1d8a16da-e82f-4d6b-aeed-595177d0f58a
+        }
+        Line {
+          SrcBlock                "CNR_m2"
+          SrcPort                 1
+          DstBlock                "ADD5"
+          DstPort                 1
+          #GUID                   6523794e-4fdb-4cd5-9535-2db4f64e0b7d
+        }
+        Line {
+          SrcBlock                "CNR_m3"
+          SrcPort                 1
+          Points                  [10, 0]
+          DstBlock                "ADD5"
+          DstPort                 2
+          #GUID                   89dfb9d6-f13a-4936-bce7-c58954e1bce5
+        }
+        Line {
+          SrcBlock                "DIV"
+          SrcPort                 1
+          DstBlock                "Goto4"
+          DstPort                 1
+          #GUID                   5064361d-a1a8-4408-a944-9430eb603efd
+        }
+        Line {
+          SrcBlock                "DIV1"
+          SrcPort                 1
+          DstBlock                "Goto5"
+          DstPort                 1
+          #GUID                   99b91547-a915-4979-8488-f60887a6214b
+        }
+        Line {
+          SrcBlock                "EAS"
+          SrcPort                 1
+          DstBlock                "EAS1"
+          DstPort                 1
+          #GUID                   caca9873-ff29-4e06-863e-51559ea31d93
+        }
+        Line {
+          SrcBlock                "EAS1"
+          SrcPort                 1
+          Points                  [25, 0]
+          #GUID                   398eb3c9-4740-418b-ac3a-87d698f97ea2
+          Branch {
+            DstBlock                "DIV"
+            DstPort                 1
+            #GUID                   ee15d859-8035-4a5c-a7ba-6d353a05e3df
+          }
+          Branch {
+            Points                  [0, -40]
+            DstBlock                "Goto14"
+            DstPort                 1
+            #GUID                   f3e58327-426a-4a56-94a4-8e597fcd5808
+          }
+        }
+        Line {
+          SrcBlock                "EAS2"
+          SrcPort                 1
+          DstBlock                "DIV1"
+          DstPort                 1
+          #GUID                   8710b902-bfaf-4532-9c7b-5c26b7c49d7a
+        }
+        Line {
+          SrcBlock                "EAS3"
+          SrcPort                 1
+          Points                  [35, 0]
+          DstBlock                "Fl_tire"
+          DstPort                 1
+          #GUID                   920b7713-6db4-4911-9e29-85c21c8ae28e
+        }
+        Line {
+          SrcBlock                "EAS4"
+          SrcPort                 1
+          DstBlock                "GAIN8"
+          DstPort                 1
+          #GUID                   1bc5e5d9-8aca-44e1-8709-fcb4bc5f1d34
+        }
+        Line {
+          SrcBlock                "Fd"
+          SrcPort                 1
+          DstBlock                "Goto11"
+          DstPort                 1
+          #GUID                   f54c9a43-fbd3-48fb-aef9-7d7e2c7efb78
+        }
+        Line {
+          SrcBlock                "Fm"
+          SrcPort                 1
+          DstBlock                "Goto10"
+          DstPort                 1
+          #GUID                   d9dddb77-0d9a-43bd-a29b-c0f937c5450e
+        }
+        Line {
+          SrcBlock                "From"
+          SrcPort                 1
+          DstBlock                "x1"
+          DstPort                 1
+          #GUID                   1a747d50-7444-4bbf-9704-64cf206a4d5e
+        }
+        Line {
+          SrcBlock                "From1"
+          SrcPort                 1
+          DstBlock                "x2"
+          DstPort                 1
+          #GUID                   6a6e2e25-cbaa-47b5-b5a1-fb36f2ae4923
+        }
+        Line {
+          SrcBlock                "From10"
+          SrcPort                 1
+          DstBlock                "SUB"
+          DstPort                 1
+          #GUID                   045f1a02-2ada-4298-ae2f-fe7f87115eca
+        }
+        Line {
+          SrcBlock                "From11"
+          SrcPort                 1
+          Points                  [5, 0]
+          DstBlock                "SUB"
+          DstPort                 2
+          #GUID                   932816ff-b06d-4c46-b8ee-6a72d01614df
+        }
+        Line {
+          SrcBlock                "From12"
+          SrcPort                 1
+          DstBlock                "MUL3"
+          DstPort                 1
+          #GUID                   5058ff65-c290-409c-9e97-7e06cc0a425e
+        }
+        Line {
+          SrcBlock                "From13"
+          SrcPort                 1
+          DstBlock                "MUL4"
+          DstPort                 1
+          #GUID                   09288405-f666-4fad-a163-24af211061cc
+        }
+        Line {
+          SrcBlock                "From14"
+          SrcPort                 1
+          DstBlock                "x3"
+          DstPort                 2
+          #GUID                   4e14bf05-7b23-4cf7-8606-a10ead120f88
+        }
+        Line {
+          SrcBlock                "From15"
+          SrcPort                 1
+          DstBlock                "x3"
+          DstPort                 3
+          #GUID                   8af73e3b-c010-4a4b-b789-0e210500b698
+        }
+        Line {
+          SrcBlock                "From16"
+          SrcPort                 1
+          DstBlock                "x4"
+          DstPort                 2
+          #GUID                   e15f38a5-fd4d-4e5f-bbdf-2d9f31befac0
+        }
+        Line {
+          SrcBlock                "From17"
+          SrcPort                 1
+          DstBlock                "x4"
+          DstPort                 3
+          #GUID                   aa160eb4-1779-4ce9-8844-6c63bfe84004
+        }
+        Line {
+          SrcBlock                "From18"
+          SrcPort                 1
+          DstBlock                "x4"
+          DstPort                 1
+          #GUID                   61a67edb-add0-412f-b67e-61ffb2394c6b
+        }
+        Line {
+          SrcBlock                "From19"
+          SrcPort                 1
+          DstBlock                "SUB1"
+          DstPort                 1
+          #GUID                   8620cb44-3f71-4547-8a43-63abd8fa7e41
+        }
+        Line {
+          SrcBlock                "From2"
+          SrcPort                 1
+          DstBlock                "x1"
+          DstPort                 2
+          #GUID                   5d5d8ac5-f3bc-439b-83eb-3537ca01b84b
+        }
+        Line {
+          SrcBlock                "From20"
+          SrcPort                 1
+          Points                  [5, 0]
+          DstBlock                "SUB1"
+          DstPort                 2
+          #GUID                   8e3fff01-0d34-40a1-a3ab-99be71f86bd5
+        }
+        Line {
+          SrcBlock                "From21"
+          SrcPort                 1
+          DstBlock                "SUB2"
+          DstPort                 1
+          #GUID                   000ba3d3-7dd2-4e7b-aabb-81eb1be3ee69
+        }
+        Line {
+          SrcBlock                "From22"
+          SrcPort                 1
+          Points                  [10, 0]
+          DstBlock                "SUB3"
+          DstPort                 1
+          #GUID                   e6c8ce09-20a9-4153-a4aa-19ef41268c98
+        }
+        Line {
+          SrcBlock                "From23"
+          SrcPort                 1
+          DstBlock                "SAT"
+          DstPort                 1
+          #GUID                   5c36835a-839b-46d1-b780-03155d4cab85
+        }
+        Line {
+          SrcBlock                "From24"
+          SrcPort                 1
+          Points                  [10, 0]
+          DstBlock                "SUB3"
+          DstPort                 2
+          #GUID                   df5d5316-099c-440e-8c58-9da54ed33f63
+        }
+        Line {
+          SrcBlock                "From25"
+          SrcPort                 1
+          DstBlock                "MUL5"
+          DstPort                 1
+          #GUID                   6402bf21-dc59-4ec8-92bf-f16322dc3e95
+        }
+        Line {
+          SrcBlock                "From26"
+          SrcPort                 1
+          DstBlock                "MUL6"
+          DstPort                 2
+          #GUID                   90651813-89b1-4755-b23b-656eea3ef5a0
+        }
+        Line {
+          SrcBlock                "From27"
+          SrcPort                 1
+          Points                  [40, 0]
+          #GUID                   8dd4885c-c3bc-4666-9d24-4db41a9966c0
+          Branch {
+            DstBlock                "MUL5"
+            DstPort                 2
+            #GUID                   2951a225-808d-4348-88a0-aca718376d3f
+          }
+          Branch {
+            DstBlock                "MUL6"
+            DstPort                 1
+            #GUID                   ded5f14e-f1ce-4865-9f85-e676a79c1102
+          }
+        }
+        Line {
+          SrcBlock                "From28"
+          SrcPort                 1
+          Points                  [30, 0; 0, -5; 20, 0]
+          DstBlock                "MUL7"
+          DstPort                 2
+          #GUID                   2def6f20-6f63-4728-a117-2cfd472ae1ae
+        }
+        Line {
+          SrcBlock                "From29"
+          SrcPort                 1
+          DstBlock                "acc_car"
+          DstPort                 1
+          #GUID                   8aa108eb-3fcd-4e4d-9599-a7a0093329bb
+        }
+        Line {
+          SrcBlock                "From3"
+          SrcPort                 1
+          DstBlock                "x1"
+          DstPort                 3
+          #GUID                   8bfa023c-7eb2-49f2-b7fc-1e673c15b774
+        }
+        Line {
+          SrcBlock                "From30"
+          SrcPort                 1
+          Points                  [40, 0]
+          DstBlock                "EAS3"
+          DstPort                 1
+          #GUID                   91ab65d6-9432-4607-a93e-fb278ee9ef54
+        }
+        Line {
+          SrcBlock                "From31"
+          SrcPort                 1
+          DstBlock                "GAIN7"
+          DstPort                 1
+          #GUID                   b61e5ed5-3669-4542-aee6-305b79135c02
+        }
+        Line {
+          SrcBlock                "From32"
+          SrcPort                 1
+          Points                  [10, 0]
+          DstBlock                "SUB2"
+          DstPort                 2
+          #GUID                   89b74ec0-40d4-47dd-ba23-f857dff9ea6e
+        }
+        Line {
+          SrcBlock                "From33"
+          SrcPort                 1
+          DstBlock                "GAIN9"
+          DstPort                 1
+          #GUID                   a37fc826-0500-4657-afaa-d0a3167ed754
+        }
+        Line {
+          SrcBlock                "From35"
+          SrcPort                 1
+          DstBlock                "x3"
+          DstPort                 1
+          #GUID                   6b62babe-5f48-416d-aac8-cd8bd30dc499
+        }
+        Line {
+          SrcBlock                "From4"
+          SrcPort                 1
+          DstBlock                "x2"
+          DstPort                 2
+          #GUID                   b08b87bd-7e2f-4070-a7c6-f36f55f8aa8c
+        }
+        Line {
+          SrcBlock                "From5"
+          SrcPort                 1
+          DstBlock                "x2"
+          DstPort                 3
+          #GUID                   fcb417a9-c175-408d-ad79-8c6292b6dae9
+        }
+        Line {
+          SrcBlock                "From6"
+          SrcPort                 1
+          DstBlock                "GAIN"
+          DstPort                 1
+          #GUID                   94fb0288-20be-43a6-b9a3-933c52759864
+        }
+        Line {
+          SrcBlock                "From7"
+          SrcPort                 1
+          DstBlock                "EAS1"
+          DstPort                 2
+          #GUID                   a8fd2b92-48bf-42d6-aac2-08ae20c4e4df
+        }
+        Line {
+          SrcBlock                "From8"
+          SrcPort                 1
+          DstBlock                "MUL"
+          DstPort                 1
+          #GUID                   cd65b079-c8eb-4526-8d24-b6ea51c9dee4
+        }
+        Line {
+          SrcBlock                "From9"
+          SrcPort                 1
+          DstBlock                "MUL1"
+          DstPort                 2
+          #GUID                   d00be157-f0d9-4b3c-9df6-575530d4cf94
+        }
+        Line {
+          SrcBlock                "GAIN"
+          SrcPort                 1
+          DstBlock                "EAS"
+          DstPort                 1
+          #GUID                   db536dd2-221e-408a-a095-2c723f8e5cc6
+        }
+        Line {
+          SrcBlock                "GAIN1"
+          SrcPort                 1
+          Points                  [5, 0; 0, -80]
+          DstBlock                "EAS"
+          DstPort                 3
+          #GUID                   8d383b37-4a42-45e4-a5a7-428dc1d14f42
+        }
+        Line {
+          SrcBlock                "GAIN2"
+          SrcPort                 1
+          Points                  [10, 0; 0, -30]
+          DstBlock                "EAS1"
+          DstPort                 3
+          #GUID                   c6355729-50d8-4cb5-866d-79626d30a60a
+        }
+        Line {
+          SrcBlock                "GAIN3"
+          SrcPort                 1
+          Points                  [15, 0; 0, -85]
+          DstBlock                "EAS1"
+          DstPort                 4
+          #GUID                   7475babf-91fd-40bd-bda9-e0a95f56ffd4
+        }
+        Line {
+          SrcBlock                "GAIN4"
+          SrcPort                 1
+          DstBlock                "ADD1"
+          DstPort                 1
+          #GUID                   467fad03-7f10-4a77-b381-38ecd91003f1
+        }
+        Line {
+          SrcBlock                "GAIN5"
+          SrcPort                 1
+          Points                  [5, 0; 0, -80]
+          DstBlock                "EAS2"
+          DstPort                 3
+          #GUID                   98d5088f-1ef7-4b67-98b2-8c03642f5b36
+        }
+        Line {
+          SrcBlock                "GAIN6"
+          SrcPort                 1
+          Points                  [10, 0]
+          DstBlock                "ADD4"
+          DstPort                 2
+          #GUID                   42dabfa6-9446-4f4b-8bb3-70110c9b2ee6
+        }
+        Line {
+          SrcBlock                "GAIN7"
+          SrcPort                 1
+          DstBlock                "ADD"
+          DstPort                 1
+          #GUID                   926b5434-0f7b-44c4-9ea9-5b7ba36dfc65
+        }
+        Line {
+          SrcBlock                "GAIN8"
+          SrcPort                 1
+          Points                  [25, 0]
+          DstBlock                "EAS3"
+          DstPort                 2
+          #GUID                   d9590560-c8f1-4e41-9a26-96011d2552dc
+        }
+        Line {
+          SrcBlock                "GAIN9"
+          SrcPort                 1
+          DstBlock                "ADD6"
+          DstPort                 1
+          #GUID                   84601755-31e6-46e4-a68f-bd3ddf4359a3
+        }
+        Line {
+          SrcBlock                "MUL"
+          SrcPort                 1
+          Points                  [10, 0; 0, -25]
+          DstBlock                "EAS"
+          DstPort                 2
+          #GUID                   07761223-9213-4991-8cee-7e4f8df68264
+        }
+        Line {
+          SrcBlock                "MUL1"
+          SrcPort                 1
+          DstBlock                "GAIN1"
+          DstPort                 1
+          #GUID                   582ed7c1-1be3-4a22-a3e6-650abe5be5d5
+        }
+        Line {
+          SrcBlock                "MUL2"
+          SrcPort                 1
+          Points                  [40, 0]
+          DstBlock                "EAS"
+          DstPort                 4
+          #GUID                   43ef40e5-20cb-497e-bebe-5eff9c9d070b
+        }
+        Line {
+          SrcBlock                "MUL3"
+          SrcPort                 1
+          DstBlock                "GAIN2"
+          DstPort                 1
+          #GUID                   369347b7-c07b-42b7-a623-843c54d54ebc
+        }
+        Line {
+          SrcBlock                "MUL4"
+          SrcPort                 1
+          DstBlock                "GAIN3"
+          DstPort                 1
+          #GUID                   439efb36-bce2-41b0-a60c-f9492be1a35d
+        }
+        Line {
+          SrcBlock                "MUL5"
+          SrcPort                 1
+          Points                  [10, 0; 0, -25]
+          DstBlock                "EAS2"
+          DstPort                 2
+          #GUID                   ef201f62-dc30-4965-899c-0695b6a81d63
+        }
+        Line {
+          SrcBlock                "MUL6"
+          SrcPort                 1
+          DstBlock                "GAIN5"
+          DstPort                 1
+          #GUID                   90f2fe44-4432-43ba-ae74-da5f3fc9545e
+        }
+        Line {
+          SrcBlock                "MUL7"
+          SrcPort                 1
+          Points                  [40, 0]
+          DstBlock                "EAS2"
+          DstPort                 4
+          #GUID                   5a4e9808-e98a-4a63-aa96-30a76b0dde48
+        }
+        Line {
+          SrcBlock                "RESET"
+          SrcPort                 1
+          DstBlock                "Goto13"
+          DstPort                 1
+          #GUID                   2bcc803c-0926-44c9-bc31-a1a014dfff06
+        }
+        Line {
+          SrcBlock                "RLIM"
+          SrcPort                 1
+          DstBlock                "EAS2"
+          DstPort                 1
+          #GUID                   65c74180-0406-4b01-bc2f-4c876fb73c5f
+        }
+        Line {
+          SrcBlock                "RUN"
+          SrcPort                 1
+          DstBlock                "Goto12"
+          DstPort                 1
+          #GUID                   401c64df-b4b4-4869-a1ab-c85bb6cdf120
+        }
+        Line {
+          SrcBlock                "SAT"
+          SrcPort                 1
+          DstBlock                "RLIM"
+          DstPort                 1
+          #GUID                   7c25547f-9e6f-45b6-a2a9-9531841aca2f
+        }
+        Line {
+          SrcBlock                "SG"
+          SrcPort                 1
+          Points                  [15, 0]
+          DstBlock                "ADD2"
+          DstPort                 2
+          #GUID                   c5295566-fa9c-4e32-9b9c-4307c5bdbef5
+        }
+        Line {
+          SrcBlock                "SQR"
+          SrcPort                 1
+          DstBlock                "GAIN6"
+          DstPort                 1
+          #GUID                   f0a537cb-e990-4ad1-a813-2b56768acee4
+        }
+        Line {
+          SrcBlock                "SUB"
+          SrcPort                 1
+          DstBlock                "MUL2"
+          DstPort                 1
+          #GUID                   99098a03-c496-41ce-b98f-1573001def82
+        }
+        Line {
+          SrcBlock                "SUB1"
+          SrcPort                 1
+          DstBlock                "MUL7"
+          DstPort                 1
+          #GUID                   3c1c71d1-b9b0-42ef-bd74-a6bfea298dfd
+        }
+        Line {
+          SrcBlock                "SUB2"
+          SrcPort                 1
+          DstBlock                "GAIN4"
+          DstPort                 1
+          #GUID                   3580fa18-f870-4ae6-a60c-ac7730696d40
+        }
+        Line {
+          SrcBlock                "SUB3"
+          SrcPort                 1
+          Points                  [45, 0]
+          DstBlock                "SQR"
+          DstPort                 1
+          #GUID                   a52988ba-1c75-40b3-a5d7-2d240b07f617
+        }
+        Line {
+          SrcBlock                "SUB4"
+          SrcPort                 1
+          DstBlock                "ADD6"
+          DstPort                 2
+          #GUID                   85566976-a9b9-4417-936f-3804c9f1edc5
+        }
+        Line {
+          SrcBlock                "x1"
+          SrcPort                 1
+          DstBlock                "Goto"
+          DstPort                 1
+          #GUID                   3fb0a75c-76cb-41ef-b841-720fea9ad6b3
+        }
+        Line {
+          SrcBlock                "x2"
+          SrcPort                 1
+          DstBlock                "Goto1"
+          DstPort                 1
+          #GUID                   bec57126-644a-4a7f-9ed8-b9a3102dc152
+        }
+        Line {
+          SrcBlock                "x3"
+          SrcPort                 1
+          DstBlock                "Goto2"
+          DstPort                 1
+          #GUID                   c2253a5e-acbb-4bc7-bef6-0768345963e6
+        }
+        Line {
+          SrcBlock                "x4"
+          SrcPort                 1
+          DstBlock                "Goto3"
+          DstPort                 1
+          #GUID                   2238a91e-8bca-42f9-ac20-787cf1a7074a
+        }
+      }
+    }
+    Block {
+      BlockType               Reference
+      Name                    "RTOV"
+      Ports                   [9, 1, 0, 0, 0]
+      Position                [790, 67, 855, 293]
+      SourceBlock             "matrixlib/RTOV"
+      nmax                    6
+      offset                  0
+      n                       8
+      etype                   "8: Double (F64)"
+      FontSize                10
+      #GUID                   0c374208-aedc-40e8-8bb6-1c0c0aa8eadd
+    }
+    Block {
+      BlockType               Reference
+      Name                    "SG_bumps"
+      Ports                   [0, 1, 0, 0, 0]
+      Position                [70, 238, 95, 252]
+      SourceBlock             "genlib/SG"
+      isig                    "4: RANDOM"
+      amp                     0
+      freq                    100
+      phase                   0
+      offset                  0
+      ifrunit                 "1: Hz"
+      iphunit                 "1: degrees"
+      FontSize                10
+      BackgroundColor         "magenta"
+      #GUID                   f202be97-97e1-4e46-b6c3-c49e2ceab13b
+    }
+    Block {
+      BlockType               Reference
+      Name                    "TRNDV"
+      Ports                   [3, 1, 0, 0, 0]
+      Position                [885, 171, 930, 209]
+      SourceBlock             "arclib/TRNDV"
+      n                       6
+      l                       10000
+      btype                   "8: Double (F64)"
+      pfac                    1
+      afac                    0
+      arc                     0
+      id                      1
+      Title                   "Quater-car model"
+      timesrc                 "1: CORETIMER"
+      ViewConfig              "{\"View\":{\"Data\":{\"History\":20,\"XAxisTime"
+"Format\":66},\"PropertiesModel\":[{\"Id\":0,\"Items\":[{\"Color\":\"#000099\","
+"\"Id\":0,\"IsActive\":true,\"LineWidth\":2,\"Name\":\"Fm\",\"SceneNumber\":3},"
+"{\"Color\":\"#669900\",\"Id\":1,\"IsActive\":true,\"LineWidth\":2,\"Name\":\"p"
+"os_car_abs\",\"SceneNumber\":3},{\"Color\":\"#ff0000\",\"Id\":2,\"IsActive\":t"
+"rue,\"LineWidth\":2,\"Name\":\"pos_sus_meas\",\"SceneNumber\":3},{\"Color\":\""
+"#9966cc\",\"Id\":3,\"IsActive\":true,\"LineWidth\":2,\"Name\":\"pos_wheel\",\""
+"SceneNumber\":3},{\"Color\":\"#339999\",\"Id\":4,\"IsActive\":true,\"LineWidth"
+"\":2,\"Name\":\"acc_car\",\"SceneNumber\":3},{\"Color\":\"#996600\",\"Id\":5,\""
+"IsActive\":true,\"LineWidth\":2,\"Name\":\"Fl_tire\",\"SceneNumber\":3}]}],\"S"
+"cenes\":[{\"Id\":3}],\"sync\":false}}"
+      FontSize                10
+      SigNames                ""
+      #GUID                   aaf5e143-fc80-400f-8e4b-eacd289146e4
+    }
+    Line {
+      SrcBlock                "BINS"
+      SrcPort                 1
+      DstBlock                "GAIN_NUDGE"
+      DstPort                 1
+      #GUID                   ba078f52-4685-42dc-807a-dc06b730b828
+    }
+    Line {
+      SrcBlock                "CNB_RUN"
+      SrcPort                 1
+      DstBlock                "Quater_car_model"
+      DstPort                 3
+      #GUID                   079d6432-f545-4201-9600-6ec7c198d3a5
+    }
+    Line {
+      SrcBlock                "CNR_FD"
+      SrcPort                 1
+      DstBlock                "EAS1"
+      DstPort                 1
+      #GUID                   ea7dbdab-8316-45f2-b735-bb47da7c823d
+    }
+    Line {
+      SrcBlock                "CNR_FM"
+      SrcPort                 1
+      Points                  [330, 0]
+      #GUID                   8ae4c5a3-3a4b-418b-a5a1-39afc3d9fefa
+      Branch {
+        Points                  [0, 60]
+        DstBlock                "Quater_car_model"
+        DstPort                 1
+        #GUID                   8ac90693-fb65-431c-ac7e-52d6e50e73aa
+      }
+      Branch {
+        DstBlock                "RTOV"
+        DstPort                 2
+        #GUID                   9c8c45ec-4668-4f17-9a73-56a5a010d664
+      }
+    }
+    Line {
+      SrcBlock                "EAS1"
+      SrcPort                 1
+      DstBlock                "Quater_car_model"
+      DstPort                 2
+      #GUID                   89e088e2-74be-469a-94eb-26c773d78c72
+    }
+    Line {
+      SrcBlock                "GAIN_NUDGE"
+      SrcPort                 1
+      Points                  [20, 0; 0, -20]
+      DstBlock                "EAS1"
+      DstPort                 2
+      #GUID                   aa42a349-2e16-4e8d-8312-6965c8a7cc96
+    }
+    Line {
+      SrcBlock                "MP_NUDGE"
+      SrcPort                 1
+      DstBlock                "BINS"
+      DstPort                 1
+      #GUID                   ea02b202-f408-465e-a02b-d789a8fdd1e4
+    }
+    Line {
+      SrcBlock                "MP_RESET"
+      SrcPort                 1
+      DstBlock                "Quater_car_model"
+      DstPort                 4
+      #GUID                   b3aaaa50-8565-4195-93db-52562ed0a1d5
+    }
+    Line {
+      SrcBlock                "Quater_car_model"
+      SrcPort                 1
+      Points                  [65, 0; 0, -30]
+      DstBlock                "RTOV"
+      DstPort                 3
+      #GUID                   6b847c94-6f30-42d1-b9c4-8e621556253e
+    }
+    Line {
+      SrcBlock                "Quater_car_model"
+      SrcPort                 2
+      Points                  [80, 0; 0, -25]
+      DstBlock                "RTOV"
+      DstPort                 4
+      #GUID                   4c7a4c28-32c4-48bc-aae7-78fc3b8cc084
+    }
+    Line {
+      SrcBlock                "Quater_car_model"
+      SrcPort                 3
+      Points                  [90, 0; 0, -20]
+      DstBlock                "RTOV"
+      DstPort                 5
+      #GUID                   ed42aa7c-65c1-402c-b99a-a4d50303f4d1
+    }
+    Line {
+      SrcBlock                "Quater_car_model"
+      SrcPort                 4
+      Points                  [105, 0; 0, -15]
+      DstBlock                "RTOV"
+      DstPort                 6
+      #GUID                   65f4f519-f2fd-4e74-b624-0f434813a6fb
+    }
+    Line {
+      SrcBlock                "Quater_car_model"
+      SrcPort                 5
+      Points                  [110, 0; 0, -10]
+      DstBlock                "RTOV"
+      DstPort                 7
+      #GUID                   10ba710a-5c41-43c1-b94a-d38d0dc5d969
+    }
+    Line {
+      SrcBlock                "RTOV"
+      SrcPort                 1
+      DstBlock                "TRNDV"
+      DstPort                 1
+      #GUID                   e85ed210-292e-4901-b704-1700a80ad2ba
+    }
+    Line {
+      SrcBlock                "SG_bumps"
+      SrcPort                 1
+      Points                  [225, 0]
+      DstBlock                "EAS1"
+      DstPort                 3
+      #GUID                   8a5eedd2-d4f5-4089-a590-8911cbd66280
+    }
+  }
+}

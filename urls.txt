@@ -1,0 +1,2 @@
+http://localhost:8008/hmi/index.html
+http://localhost:8008/api/tasks

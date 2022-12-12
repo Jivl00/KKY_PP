@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <title>
+        KKY/PP SP
+    </title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+    <header id="header">
+        <a id="logo" href="/"></a>
+        <div id="header-title">
+            KKY/PP SP
+        </div>
+    </header>
+
+    <div id="row">
+        <main id="content">
+            <!-- viewBox ovlivňuje velikost SVG - plátno -->
+            <svg id="svgcanvas" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 700 400">
+                <g id="whole_car">
+                    <g id="car">
+                        <path d="M 50 250 C 50 50, 350 50, 350 250" style="stroke:rgb(0,0,0);stroke-width:2" ;
+                            fill="transparent" />
+                        <line x1="550" y1="250" x2="350" y2="250" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    </g>
+                    <g id="wheel">
+                        <circle id="wheel1" cx="200" cy="250" r="100" />
+                        <circle id="wheel2" cx="200" cy="250" r="60" fill="white" />
+                        <circle id="wheel3" cx="200" cy="250" r="5" fill="black" />
+                    </g>
+                    <g id="spring">
+                        <g id="spring_dumper">
+                            <path stroke-dasharray="5,5" d="M 200 250 L 200 100"
+                                style="stroke:rgb(0,0,0);stroke-width:2" />
+                            <g id="spring1" transform="translate(-20,0)">
+                                <polyline
+                                    points="200,200 210,195 190,190 210,185 190,180 210,175 190,170 210,165 190,160 210,155 190,150 210,145 200,140"
+                                    style="fill:none;stroke:rgb(77, 163, 197);stroke-width:2" />
+                            </g>
+                            <line id="spring2" x1="180" y1="200" x2="220" y2="200"
+                                style="stroke:rgb(77, 163, 197);stroke-width:2" />
+                            <line id="spring3" x1="180" y1="140" x2="220" y2="140"
+                                style="stroke:rgb(77, 163, 197);stroke-width:2" />
+                            <line id="dumper1" x1="220" y1="200" x2="220" y2="140"
+                                style="stroke:rgb(77, 163, 197);stroke-width:2" />
+                            <rect id="dumper2" x="210" y="150" width="20" height="40"
+                                style="fill:rgb(255, 255, 255);stroke:rgb(77, 163, 197);stroke-width:2" />
+                        </g>
+                    </g>
+                </g>
+
+                <g id="ground">
+                    <line x1="50" y1="350" x2="650" y2="350" style="stroke:rgb(0,0,0);stroke-width:2" />
+                    <g id="lines">
+                    </g>
+                    <script>
+                        var svgns = "http://www.w3.org/2000/svg";
+                        var svg = document.getElementById('lines');
+
+                        for (var i = 0; i < 31; i++) {
+                            var shape = document.createElementNS(svgns, "line");
+                            var rot = "rotate(120, " + (50 + i * 20) + ", 350)";
+                            shape.setAttributeNS(null, "transform", rot);
+                            shape.setAttributeNS(null, "x1", 50 + i * 20);
+                            shape.setAttributeNS(null, "y1", 350);
+                            shape.setAttributeNS(null, "x2", 70 + i * 20);
+                            shape.setAttributeNS(null, "y2", 350);
+                            shape.setAttributeNS(null, "style", "stroke:rgb(0,0,0);stroke-width:2");
+                            svg.appendChild(shape);
+                        }
+                    </script>
+
+                </g>
+            </svg>
+            <div id="myPlot"></div>
+        </main>
+        <aside>
+            <div id="outputs">
+                <div class="output">
+                    <div class="output-title">
+                        <span>Absolute car position:&emsp;</span>
+                    </div>
+                    <div class="output-value">
+                        <span id="output1-value">0</span>
+                    </div>
+                    <div class="output-unit">
+                        <span>[mm]</span>
+                    </div>
+                </div>
+                <div class="output">
+                    <div class="output-title">
+                        <span>Relative position car-wheel:&emsp;</span>
+                    </div>
+                    <div class="output-value">
+                        <span id="output2-value">0</span>
+                    </div>
+                    <div class="output-unit">
+                        <span>[mm]</span>
+                    </div>
+                </div>
+                <div class="output">
+                    <div class="output-title">
+                        <span>Wheel position:&emsp;</span>
+                    </div>
+                    <div class="output-value">
+                        <span id="output3-value">0</span>
+                    </div>
+                    <div class="output-unit">
+                        <span>[mm]</span>
+                    </div>
+                </div>
+                <div class="output">
+                    <div class="output-title">
+                        <span>Mass on tire:&emsp;</span>
+                    </div>
+                    <div class="output-value">
+                        <span id="output4-value">0</span>
+                    </div>
+                    <div class="output-unit">
+                        <span>[kg]</span>
+                    </div>
+                </div>
+                <div class="output">
+                    <div class="output-title">
+                        <span>Acceleration:&emsp;</span>
+                    </div>
+                    <div class="output-value">
+                        <span id="output5-value">0</span>
+                    </div>
+                    <div class="output-unit">
+                        <span>[mm/s²]</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="controls">
+                <h1> Step error </h1>
+                <div class="step_err err">
+                    <button onclick="onClick_se()" id="se_button">Create error</button>
+                    <div class="inputbox">
+                        <label for="se">intensity</label>
+                        <input type="number" step="1" id="se" name="se" value="0">
+                    </div>
+                </div>
+
+                <div class="rand_err">
+                    <h1> Random error </h1>
+                    <div class="step_err err">
+                        <label class="switch">
+                            <input class="toggle toggle-round-yes-no" type="checkbox" id="re_switch" name="re_switch">
+                            <label for="re_switch"></label>
+                        </label>
+                        <div class="inputbox">
+                            <label for="rea">amplitude</label>
+                            <input type="number" step="1" id="rea" name="rea" value="0">
+
+                            <label for="ref">frequency</label>
+                            <input type="number" step="1" id="ref" name="ref" value="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="model">
+                    <div class="model_run">
+                        <label class="switch">
+                            <input class="toggle toggle-round-yes-no" type="checkbox" id="model_switch"
+                                name="model_switch">
+                            <label for="model_switch"></label>
+                        </label>
+                    </div>
+                    <h1>Model settings</h1>
+                    <div class="model_reset">
+                        <button onclick="model_reset()">RESET</button>
+                    </div>
+                </div>
+                <div class="status">
+                    <label for="status">Status: </label>
+                    <span id="status">Not connected</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer id="footer">
+        <p>Vladimíra Kimlová<br>
+            <a href="mailto:jivl@students.zcu.cz">jivl@students.zcu.cz</a>
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
