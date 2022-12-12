@@ -9,5 +9,8 @@ if "%~2"=="" (
 set GIT_COMMITTER_DATE=%1
 set GIT_AUTHOR_DATE=%1
 
-:: Run the git commit command with the second argument as the commit message
-git commit --date="%1" -m "%2"
+:: Remove quotes from the commit message (if any) and store it in a variable
+set COMMIT_MESSAGE=%~2
+
+:: Run the git commit command with the date and the commit message
+git commit --date="%1" -m "%COMMIT_MESSAGE%"
